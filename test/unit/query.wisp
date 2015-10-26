@@ -54,3 +54,15 @@
     (t.equal
       (:innerHTML ($get "#html5"))
       "a section with id")))
+
+(test "$get can chain calls to get child elements"
+  (fn [t]
+    (t.equal
+      (:innerHTML ($get ".nested" ($get ".root")))
+      "Nested!")))
+
+(test "$get chained calls pass nil through each"
+ (fn [t]
+   (t.equal
+     ($get ".nested" ($get ".fake"))
+     nil)))
