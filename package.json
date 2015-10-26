@@ -1,0 +1,27 @@
+{
+  "name": "wisp-query",
+  "version": "0.0.1",
+  "description": "A jQuery-inspired library written in (and for) wisp",
+  "main": "src/query.wisp",
+  "scripts": {
+    "test": "node ./test/run.js test/unit/*.wisp | tap-spec"
+  },
+  "keywords": [
+    "wisp",
+    "wisp-query",
+    "query",
+    "dom",
+    "browser",
+    "jquery",
+    "lisp"
+  ],
+  "author": "Josh Girvin <josh@jgirvin.com> (http://jgirvin.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "jsdom": "^7.0.2",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.2",
+    "wisp": "^0.10.0",
+    "wisp-loader": "^0.1.3"
+  }
+}
