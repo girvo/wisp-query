@@ -2,7 +2,7 @@
   "tests for query.query"
   (:require [query.test.setup :refer [setup-tests!]]
             [tape]
-            [query.src.query :refer [$get]]))
+            [query.src.query :refer [$get $filter]]))
 
 (setup-tests!
 "<html>
@@ -62,7 +62,17 @@
       "Nested!")))
 
 (test "$get chained calls pass nil through each"
- (fn [t]
-   (t.equal
-     ($get ".nested" ($get ".fake"))
-     nil)))
+  (fn [t]
+    (t.equal
+      ($get ".nested" ($get ".fake"))
+      nil)))
+
+; Tests for $filter
+(test "$filter returns empty set with callback that returns false"
+  (fn [t]
+    (t.deepEqual
+      ($filter 
+        (fn [item]
+          false)
+        ($get ".test1"))
+      [])))

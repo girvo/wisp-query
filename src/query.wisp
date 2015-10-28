@@ -2,6 +2,12 @@
   "a jquery-inspired functional DOM library"
   (:require [wisp.runtime :refer [nil?]]))
 
+(defn ^:private nl->array 
+  "Converts NodeLists to a raw array"
+  {:version "0.1"}
+  [nl]
+  (Array.prototype.slice.call nl))
+
 (defn ^:private raw-get [context selector]
   "Internal wrapper around querySelectorAll, allows for infinite chaining"  
   (if (or (nil? context) (identical? (:length context) 0))
@@ -18,3 +24,9 @@
     (raw-get document selector)) 
   ([selector dom-ele]
     (raw-get dom-ele selector)))
+
+(defn $filter
+  "Returns set of dom elements based on result of callback executed on each item"
+  {:version "0.1"}
+  [cb domset]
+  (.filter (nl->array domset) cb))
