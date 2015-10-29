@@ -95,4 +95,4 @@
         (fn [item]
           (identical? (:innerHTML item) "one"))
         ($get ".test2"))
-      [(aget ($get ".test2") 0)])))
+      (aget ($get ".test2") 0))))

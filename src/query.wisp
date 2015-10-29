@@ -2,10 +2,8 @@
   "a jquery-inspired functional DOM library"
   (:require [wisp.runtime :refer [nil?]]))
 
-(defn ^:private nl->array 
+(defn ^:private nl->array [nl]
   "Converts NodeLists to a raw array"
-  {:version "0.1"}
-  [nl]
   (Array.prototype.slice.call nl))
 
 (defn ^:private raw-get [context selector]
@@ -29,4 +27,7 @@
   "Returns set of dom elements based on result of callback executed on each item"
   {:version "0.1"}
   [cb domset]
-  (.filter (nl->array domset) cb))
+  (let [result (.filter (nl->array domset) cb)]
+    (if (identical? (:length result) 1)
+      (aget result 0)
+      result)))
