@@ -2,7 +2,7 @@
   "tests for query.query"
   (:require [query.test.setup :refer [setup-tests!]]
             [tape]
-            [query.src.query :refer [$get $filter]]))
+            [query.src.query :refer [$get $filter $id]]))
 
 (setup-tests!
 "<html>
@@ -96,3 +96,10 @@
           (identical? (:innerHTML item) "one"))
         ($get ".test2"))
       (aget ($get ".test2") 0))))
+
+; $id tests
+(test "$id returns nil if it doesn't exist, doc context"
+  (fn [t]
+    (t.equal
+      ($id "lolololol")
+      nil)))
