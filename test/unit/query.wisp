@@ -17,6 +17,8 @@
      <div class=\"root\">
        <span class=\"nested\">Nested!</span>
      </div>
+     <div class=\"test2\">one</div>
+     <div class=\"test2\">two</div>
    </body>
  </html>")
 
@@ -85,4 +87,12 @@
           true)
         ($get ".test1"))
       (Array.prototype.slice.call ($get ".test1")))))
-      
+
+(test "$filter returns <div>one</div> with correct callback"
+  (fn [t]
+    (t.deepEqual
+      ($filter
+        (fn [item]
+          (identical? (:innerHTML item) "one"))
+        ($get ".test2"))
+      [(aget ($get ".test2") 0)])))
