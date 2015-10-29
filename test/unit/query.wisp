@@ -76,3 +76,13 @@
           false)
         ($get ".test1"))
       [])))
+
+(test "$filter returns the set with callback that returns true"
+  (fn [t]
+    (t.deepEqual
+      ($filter
+        (fn [item]
+          true)
+        ($get ".test1"))
+      (Array.prototype.slice.call ($get ".test1")))))
+      
